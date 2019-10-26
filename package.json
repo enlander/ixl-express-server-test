@@ -1,0 +1,53 @@
+{
+  "name": "ixl-express-server-test",
+  "version": "0.0.1",
+  "description": "Express Test Server",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "npm run build && node dist/index.js",
+    "start:dev": "nodemon --exec babel-node server/index.js",
+    "start:docker": "node dist/index.js",
+    "build": "babel server --out-dir dist",
+    "lint": "eslint ./server --fix",
+    "format": "prettier-eslint 'server/**/*.{js,json}' --write",
+    "test:lint": "eslint ./server --fix",
+    "test:format": "prettier-eslint 'server/**/*.{js,json}' --write"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint ./server --fix",
+      "prettier-eslint 'server/**/*.{js,json}' --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.3",
+    "dotenv": "^8.2.0",
+    "express": "latest",
+    "helmet": "^3.21.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^3.0.9",
+    "install": "^0.13.0",
+    "lint-staged": "^9.4.2",
+    "nodemon": "^1.19.4",
+    "npm": "^6.12.0",
+    "prettier-eslint-cli": "^5.0.0"
+  }
+}
